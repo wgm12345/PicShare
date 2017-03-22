@@ -1,0 +1,482 @@
+/**body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}
+.home-video-link-td{
+    height:100px;
+}
+.uploadpage-bg{
+    background-image:url(/Images/Upload/bg.jpg)
+}
+.uploadpage-input-of-linkcode{
+    width:400px;
+}
+
+.uploadpage-upload-image-block{
+    width:250px;
+    height:250px;
+    border:dotted;
+    border-color:#808080;
+    background-color:#ffffff;
+}
+.home-img-show-size{
+    width:240px;
+    height:200px;
+}
+.home-rollback-img-size{
+    width:600px;
+    height:400px;
+}*/
+body{
+    font-size: 12px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #e4e7ee;
+}
+
+button{
+    display: block;
+}
+
+ul,ol{
+    list-style-type: none;
+}
+
+.top{
+    z-index:1000;
+    position: relative;
+    width: 100%;
+    height: 52px;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    background-color: transparent;
+}
+.top .top_bg_wrp{
+    overflow: hidden;
+    position: absolute;
+    /*relative会有blaock的特性，无法实现覆盖；*/
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 1px 1px #e5e5e5 ;
+}
+.top_bg_wrp .top_bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 62px;
+    z-index: 0;
+    background-position: center 0;
+    background-image: url(/PicShare/Images/Home/2016_winter.jpg );
+    /*background-color: cornflowerblue;*/
+    background-repeat: no-repeat;
+}
+.top_bg_wrp .top_bg.blur{
+    -webkit-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5,MakeShadow=false);
+}
+.top_bg_wrp .bg-blur-mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    z-index: 50;
+}
+.top .top_container{
+    margin: auto;/*居中*/
+    height: 100%;
+    width: 960px;
+    position: relative;
+    top: 0;
+    z-index: 10000;
+}
+.top_container .logo{
+    float: left;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    height: 100%;
+    width: 100px;
+}
+.top_container .top_nav{
+    float: left;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 400px;
+    background-color:transparent;
+}
+.top_nav .v_ulist{
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+.v_ulist li {
+    float: left;
+    height: 100%;
+    text-decoration: none;
+}
+
+.v_ulist li.t-ul-item{
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+}
+.v_ulist li.t-ul-item a{
+    padding: 0 15px;
+    margin: 0;
+    display: block;
+    /*a标签默认inline  盒元素高度允许溢出，宽度就换行了*/
+}
+.v_ulist li.t-ul-item a.submit{
+    line-height: 72px;
+    padding: 0;
+    margin: 0;
+    background-color: #57abe5;
+    height: 72px;
+    width: 62px;
+    position: relative;
+    top: -10px;
+    right:0px;
+    /*margin、height、width什么的都盒元素才可起作用的*/
+    border-radius: 6px;
+}
+
+
+.v_ulist li.t-ul-item:active,li.t-ul-item:hover {
+    background-color:rgba(255,255,255,0.4);
+}
+.user_box{
+    float:right;
+    margin:0;
+    height:100%;
+    width:300px;
+}
+.user_box ul{
+    position:relative;
+    height:100%;
+}
+.user_box ul li {
+    float: right;
+    text-decoration: none;
+    text-align: center;
+    line-height: 52px;
+    color: #ffffff;
+}
+.user_box ul li a{
+    padding: 0 15px;
+    margin: 0;
+    display: block;
+}
+.i_header{
+    z-index:100;
+    position:relative;
+    margin:-52px auto 0;
+    background: transparent no-repeat center -10px;
+    background-image: url(/PicShare/Images/Home/2016_winter.jpg);
+    height:180px;
+    width:100%;
+}
+.i_header .logo{
+    z-index:10000;
+    position:absolute;
+    top:90px;
+    left:120px;
+    height:62px;
+    width:100px;
+    background: transparent no-repeat center -10px;
+}
+.i_header .search_box{
+    z-index:10000;
+    position:absolute;
+    top:105px;
+    right:120px;
+    width: 268px;
+    height: 36px;
+    padding: 2px 2px 2px 2px;
+    background-color: rgba(0,0,0,0.12);
+    border-radius: 6px;
+}
+.search_box .search{
+    position:relative;
+    height:100%;
+    background-color: rgba(255,255,255,0.88);
+    display: block;
+    height: 32px;
+    border-radius: 4px;
+    transition: .2s background-color;
+
+}
+.search input[type="text"]{
+    float: left;
+    width: 200px;
+    color: #222;
+    font-size: 12px;
+    overflow: hidden;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px;
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius:5px;
+}
+.search button{
+    height:32px;
+    width:32px;
+    float:left;
+    background: url(/PicShare/fonts/icons.png) -653px -720px;
+    border: 0;
+    box-shadow: none;
+    border-radius:5px;
+
+}
+.i-box{
+    border-radius:6px;
+    background-color:white;
+    padding:12px;
+    box-shadow :none;
+    margin:15px 6px;
+}
+
+.i_body{
+    width:100%;
+    padding:0 265px 0 225px;
+}
+/*i means index*/
+.i_body .main{
+    width:100%;
+    float:left;
+}
+.i_body .sub{
+    width:225px;
+    margin-left:-100%;
+    float:left;
+    position:relative;
+    left: -225px;
+}
+.i_body .extra{
+    width:265px;
+    margin-left:-265px;
+    float:left;
+    position:relative;
+    right:-265px;
+}
+.image-wrap{
+    height:150px;
+    width:100%;
+    display:block;
+    overflow:hidden;
+}
+.image-thumb{
+    border:none;
+}
+.video{
+    color:#808080;
+    font-size:12px;
+}
+.video .video_msg{
+}
+.icon{
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent url(/PicShare/fonts/icons.png) no-repeat top left;
+    display: inline-block;
+    width: 28px;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+
+}
+.video_msg .collect-wrap{
+    float:right;
+    border:1px solid #57abe5;
+    border-radius:5px;
+    padding:5px;
+    margin:-32px 24px 0 0;
+}
+.icon-collect{
+    background: transparent url(/PicShare/fonts/icons.png) no-repeat top left;
+    background-position: -659px -402px;
+}
+.btn-collect{
+    line-height:28px;
+    border-radius:5px;
+    display:inline-block;
+    background-color:white;
+    border:none;
+}
+
+.video .user_msg{
+    height:360px;
+}
+.user_msg .user_h_img{
+    margin:0 auto;
+}
+.msg-wrap button{
+    float:right;
+    position:relative;
+    top:-42px;
+    right:20px;
+    border-radius:6px;
+    border:none;
+    color:white;
+    background-color:#57abe5;
+    height:36px;
+    width:52px;
+}
+.v-ul{
+    list-style:none;
+}
+.v-ul li{
+    float:left;
+}
+.change_h_img_btns{
+    float:left;
+    margin:12px 0;
+    padding:5px;
+}
+.change_h_img_btns .btn-uploader{
+    float:left;
+    border-radius:8px;
+    height:38px;
+    width:78px;
+    font-size: 12px;
+    line-height: 24px;
+}
+.change_h_img_btns .btn-change-head{
+    float:left;
+}
+
+/* login ref */
+.sign-bg{
+    background: repeat url(/PicShare/Images/VideoCover/26b5a0f69ba244298d24f9569be53bcc.jpg);
+}
+
+.sign-box-wrap{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:  0;
+    bottom: 0;
+    margin: auto;
+    height: 500px;
+    width: 363px;
+    overflow: hidden;
+}
+.sign-box-form{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(225, 229, 231, 0.75);
+    text-align: center;
+    border-radius: 10px;
+}
+.sign-box-form .logo{
+    height: 20%;
+    margin:30px auto 20px;
+    width: 200px;
+    font-size: 50px;
+    color: rgba(73, 171, 229, 1);
+    line-height: 140px;
+}
+.sign-box-form .btns-wrap{
+    height: 70%;
+    margin: 40px 30px;
+    color: white;
+
+}
+.sign-box-form .btns-wrap a{
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    border-style: none;
+    margin: 10px 0;
+    color: white;
+    font-size: 20px;
+}
+.sign-box-form .btns-wrap .sign-btn{
+    background-color: rgba(88, 92, 110,1);
+}
+.sign-box-form .btns-wrap .register-btn{
+
+    background-color: rgba(75, 178, 239,1);
+}
+.sign-box-form .btns-wrap .other-btns-wrap{
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+    text-align: center;
+    margin: 30px 0px;
+    padding: 30px 20px;
+    overflow:auto;
+}
+.sign-box-form .btns-wrap .other-btns-wrap button{
+    float: left;
+    width: 33.3%;
+    background-color: #00b7ee;
+    font-size: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+footer.sign-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(44, 44, 44, 0.73);
+    height: 20px;
+    width: 100%;
+    color: white;
+}
+
+footer.sign-footer .about-us{
+    float: left;
+    padding: 0 5px;
+    background-color: transparent;
+    color: white;
+
+}
+
+/*comment ref*/
+.cmt-box{
+    border-radius:6px;
+    background-color:white;
+    padding:12px;
+    box-shadow :none;
+    margin:15px 6px;
+}
+
+.com-floors ul{
+    display: auto;
+}
