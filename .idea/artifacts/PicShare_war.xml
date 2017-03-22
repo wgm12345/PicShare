@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PicShare:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="PicShare.war">
+      <element id="artifact" artifact-name="PicShare:war exploded" />
+    </root>
+  </artifact>
+</component>
