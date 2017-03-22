@@ -20,6 +20,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/sign",method = RequestMethod.GET)
+    public  String getSign(){
+        return "/user/sign";
+    }
+
+    @RequestMapping(value = "/signIn",method = RequestMethod.GET)
+    public  String getSignIn(){
+        return "/user/signIn";
+    }
+
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String getRegister(){
         return "/user/register";
