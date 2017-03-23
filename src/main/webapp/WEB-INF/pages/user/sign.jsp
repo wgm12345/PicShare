@@ -15,7 +15,7 @@
 <body class="sign-bg">
 <div id = "main">
   <div class = "sign-box-wrap">
-    <form class="sign-box-form">
+    <form class="sign-box">
       <div class="logo">Picshare</div>
       <div class="btns-wrap">
         <a href="/user/signIn" class="sign-btn">登录</a>
