@@ -22,7 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
-.home-video-link-td{
+.home-image-link-td{
     height:100px;
 }
 .uploadpage-bg{
@@ -47,6 +47,14 @@ textarea {
     width:600px;
     height:400px;
 }*/
+/*icon*/
+.icon-playtime{
+    background-image: url(../images/site/icons.png);
+    background-position: -484px -39px;
+    width: 11px;
+    height: 11px;
+}
+
 body{
     font-size: 12px;
     line-height: 1.5;
@@ -89,10 +97,8 @@ ul,ol{
     width: 100%;
     height: 62px;
     z-index: 0;
-    background-position: center 0;
-    background-image: url(/PicShare/Images/Home/2016_winter.jpg );
     /*background-color: cornflowerblue;*/
-    background-repeat: no-repeat;
+    background: url(/statics/images/site/2016_winter.jpg) no-repeat center 0;
 }
 .top_bg_wrp .top_bg.blur{
     -webkit-filter: blur(5px);
@@ -181,7 +187,7 @@ ul,ol{
     float:right;
     margin:0;
     height:100%;
-    width:300px;
+    width:400px;
 }
 .user_box ul{
     position:relative;
@@ -192,7 +198,7 @@ ul,ol{
     text-decoration: none;
     text-align: center;
     line-height: 52px;
-    color: #ffffff;
+    color: #337ab7;
 }
 .user_box ul li a{
     padding: 0 15px;
@@ -203,8 +209,7 @@ ul,ol{
     z-index:100;
     position:relative;
     margin:-52px auto 0;
-    background: transparent no-repeat center -10px;
-    background-image: url(/PicShare/Images/Home/2016_winter.jpg);
+    background: transparent url(/statics/images/site/2016_winter.jpg) no-repeat center -10px;
     height:180px;
     width:100%;
 }
@@ -256,7 +261,7 @@ ul,ol{
     height:32px;
     width:32px;
     float:left;
-    background: url(/PicShare/fonts/icons.png) -653px -720px;
+    background: url(../images/site/icons.png) -653px -720px;
     border: 0;
     box-shadow: none;
     border-radius:5px;
@@ -271,8 +276,10 @@ ul,ol{
 }
 
 .i_body{
-    width:100%;
+    margin: 0 auto;
+    width:1080px;
     padding:0 265px 0 225px;
+    overflow: auto;
 }
 /*i means index*/
 .i_body .main{
@@ -302,16 +309,16 @@ ul,ol{
 .image-thumb{
     border:none;
 }
-.video{
+.image{
     color:#808080;
     font-size:12px;
 }
-.video .video_msg{
+.image .image_msg{
 }
 .icon{
     display: inline-block;
     vertical-align: middle;
-    background: transparent url(/PicShare/fonts/icons.png) no-repeat top left;
+    background: transparent url(../images/site/icons.png) no-repeat top left;
     display: inline-block;
     width: 28px;
     float: left;
@@ -319,16 +326,18 @@ ul,ol{
     line-height: 28px;
 
 }
-.video_msg .collect-wrap{
+.image_msg .collect-wrap{
     float:right;
     border:1px solid #57abe5;
     border-radius:5px;
     padding:5px;
     margin:-32px 24px 0 0;
+    position: relative;
+    top: 25px;
+    right: 20px;
 }
 .icon-collect{
-    background: transparent url(/PicShare/fonts/icons.png) no-repeat top left;
-    background-position: -659px -402px;
+    background: transparent url(../images/site/icons.png) no-repeat -659px -402px;
 }
 .btn-collect{
     line-height:28px;
@@ -337,17 +346,37 @@ ul,ol{
     background-color:white;
     border:none;
 }
+.image_msg .like-wrap{
+    float:right;
+    border:1px solid #57abe5;
+    border-radius:5px;
+    padding:5px;
+    margin:-32px 24px 0 0;
+    position: relative;
+    top: 67px;
+    right: 20px;
+}
+.icon-like{
+    background: transparent url(../images/site/icons.png) no-repeat -659px -402px;
+}
+.btn-like{
+    line-height:28px;
+    border-radius:5px;
+    display:inline-block;
+    background-color:white;
+    border:none;
+}
 
-.video .user_msg{
+.image .user_msg{
     height:360px;
 }
 .user_msg .user_h_img{
     margin:0 auto;
 }
-.msg-wrap button{
+.msg-wrap .follow{
     float:right;
     position:relative;
-    top:-42px;
+    top:20px;
     right:20px;
     border-radius:6px;
     border:none;
@@ -355,6 +384,11 @@ ul,ol{
     background-color:#57abe5;
     height:36px;
     width:52px;
+}
+.msg-wrap .to-space{
+    position: relative;
+
+
 }
 .v-ul{
     list-style:none;
@@ -381,7 +415,7 @@ ul,ol{
 
 /* login ref */
 .sign-bg{
-    background: repeat url(/PicShare/Images/VideoCover/26b5a0f69ba244298d24f9569be53bcc.jpg);
+    background: repeat url(../images/master/default.jpg);
 }
 
 .sign-box-wrap{
@@ -391,9 +425,13 @@ ul,ol{
     top:  0;
     bottom: 0;
     margin: auto;
-    height: 500px;
+    height: 400px;
     width: 363px;
     overflow: hidden;
+}
+.sign-error-box{
+    position: relative;
+    top: -20px;
 }
 .sign-box{
     width: 100%;
@@ -403,7 +441,7 @@ ul,ol{
     border-radius: 10px;
 }
 .sign-box .logo{
-    height: 20%;
+    height: 30%;
     margin:30px auto 20px;
     width: 200px;
     font-size: 50px;
@@ -411,10 +449,17 @@ ul,ol{
     line-height: 140px;
 }
 .sign-box .btns-wrap{
-    height: 70%;
+    top:10%;
+    height: 60%;
     margin: 40px 30px;
     color: white;
 
+}
+.sign-box .login-list{
+    position: relative;
+    height: 70%;
+    margin: 0px 30px;
+    color: rgba(73, 171, 229, 1);
 }
 .sign-box .btns-wrap a{
     display: block;
@@ -442,7 +487,7 @@ ul,ol{
     padding: 30px 20px;
     overflow:auto;
 }
-.sign-box .btns-wrap .other-btns-wrap button{
+.sign-box .btns-wrap .other-btns-wrap button div{
     float: left;
     width: 33.3%;
     background-color: #00b7ee;
@@ -480,3 +525,66 @@ footer.sign-footer .about-us{
 .com-floors ul{
     display: auto;
 }
+
+/*personal page ref*/
+.u_body{
+    background-color: white;
+}
+
+/* dynamic page ref*/
+
+/*search ref 后面的收藏展示也依赖这些样式*/
+
+.search-page-wrap{
+    margin: 0 auto;
+    width: 960px;
+    background: white;
+}
+
+.search-list{
+    position: relative;
+
+}
+.search-list .img-box{
+    position: relative;
+    margin-bottom: 20px;
+    height: 300px;
+    border:1px solid #e5e9ef;
+    border-radius: 3px;
+}
+.search-list .img-box-collectionList{
+    height: 350px;
+}
+.img-box .img-wrap{
+    height: 160px;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.img-box .img-name{
+    font-size: 18px;
+    padding: 10px;
+    height: 60px;
+}
+.img-name a{
+    color: #000000;
+}
+.img-box .img-info{
+    font-size: 14px;
+    color: #99a2aa;
+    padding: 10px;
+
+}
+.img-box .cancel-collect{
+    position: relative;
+    left: 120px;
+    border-radius: 3px;
+}
+
+/*   用户信息页   */
+.user-info-wrap{
+    margin: 20px auto;
+    width: 720px;
+
+}
+

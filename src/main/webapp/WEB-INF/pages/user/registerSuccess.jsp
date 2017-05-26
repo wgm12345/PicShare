@@ -11,6 +11,7 @@
 	<title></title>
 </head>
 <body>
-注册成功
+注册成功,邮箱认证已发送至您填写的邮箱，请登录邮箱进行确认，
+<a href="/index">进入首页</a>
 </body>
 </html>

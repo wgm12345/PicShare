@@ -7,8 +7,16 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="PicShare"/>
+    <table name="Collection" schema="" catalog="PicShare" type="TABLE">
+      <column name="userId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="imageId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="userId,imageId"/>
+      <foreign-key name="FK_Collection_imageId" columns="imageId" ref-table="Image" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Collection_userId" columns="userId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Collection_imageId_idx" unique="false" columns="imageId"/>
+    </table>
     <table name="Comment" schema="" catalog="PicShare" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="userId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="imgId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="publicDateTime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
@@ -16,42 +24,110 @@
       <column name="isDeleted" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
       <column name="isLegal" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_Comment_imageId" columns="imgId" ref-table="Image" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Comment_userId" columns="userId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="imageId_idx" unique="false" columns="imgId"/>
+      <index name="userId_idx" unique="false" columns="userId"/>
+    </table>
+    <table name="Dynamic" schema="" catalog="PicShare" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="senderId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="receiverId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="isReaded" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_Dynamic_receiverId" columns="receiverId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Dynamic_senderId" columns="senderId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Dynamic_receiverId_idx" unique="false" columns="receiverId"/>
+      <index name="FK_Dynamic_senderId_idx" unique="false" columns="senderId"/>
+    </table>
+    <table name="Fan_FollowUser" schema="" catalog="PicShare" type="TABLE">
+      <column name="fanId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="followUserId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="fanId,followUserId"/>
+      <foreign-key name="FK_Fan_FollowUser_fanId" columns="fanId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Fan_FollowUser_followUserId" columns="followUserId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Fan_FollowUser_fanId_idx" unique="false" columns="fanId"/>
+      <index name="FK_Fan_FollowUser_followUserId_idx" unique="false" columns="followUserId"/>
     </table>
     <table name="Genre" schema="" catalog="PicShare" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="genreName" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="genreName" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_Image_genreId" table="Image" schema="" catalog="PicShare" columns="genreId"/>
+      <exported-key name="FK_Image_Genre_genreId" table="Image_Genre" schema="" catalog="PicShare" columns="genreId"/>
     </table>
     <table name="Image" schema="" catalog="PicShare" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="genreId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="createDateTime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="likeSum" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
-      <column name="rate" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7" def="MA=="/>
-      <column name="upLoaderId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="birefIntro" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
-      <column name="imgPath" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="uploaderId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="briefIntro" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="imgPath" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J2RlZmF1bHQuanBnJw=="/>
       <column name="totalHits" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="commentsSum" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="collectionSum" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="weekHits" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="isDeleted" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
       <column name="isPassed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_Image_genreId" columns="genreId" ref-table="Genre" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Image_uploaderId" columns="uploaderId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_Collection_imageId" table="Collection" schema="" catalog="PicShare" columns="imageId"/>
+      <exported-key name="FK_Comment_imageId" table="Comment" schema="" catalog="PicShare" columns="imgId"/>
+      <exported-key name="FK_Image_Genre_imageId" table="Image_Genre" schema="" catalog="PicShare" columns="imageId"/>
+      <exported-key name="FK_Rate_ImgId" table="Rate" schema="" catalog="PicShare" columns="imgId"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
+      <index name="FK_genreId_idx" unique="false" columns="genreId"/>
+      <index name="uploaderId_idx" unique="false" columns="uploaderId"/>
+    </table>
+    <table name="Image_Genre" schema="" catalog="PicShare" type="TABLE">
+      <column name="imageId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="genreId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="imageId,genreId"/>
+      <foreign-key name="FK_Image_Genre_genreId" columns="genreId" ref-table="Genre" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Image_Genre_imageId" columns="imageId" ref-table="Image" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Image_Genre_genreId_idx" unique="false" columns="genreId"/>
     </table>
     <table name="Login" schema="" catalog="PicShare" type="TABLE">
       <column name="loginProvider" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="loginKey" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="userId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="loginProvider,loginKey,userId"/>
+      <foreign-key name="FK_Login_userId" columns="userId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_userId_idx" unique="false" columns="userId"/>
+    </table>
+    <table name="Public_Info" schema="" catalog="PicShare" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Rate" schema="" catalog="PicShare" type="TABLE">
+      <column name="userId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="imgId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="rate" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="userId,imgId"/>
+      <foreign-key name="FK_Rate_ImgId" columns="imgId" ref-table="Image" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Rate_UserId" columns="userId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Rate_ImgId_idx" unique="false" columns="imgId"/>
     </table>
     <table name="Role" schema="" catalog="PicShare" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="roleName" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_User_Role_roleId" table="User_Role" schema="" catalog="PicShare" columns="roleId"/>
+    </table>
+    <table name="Tag" schema="" catalog="PicShare" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="tagName" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="User" schema="" catalog="PicShare" type="TABLE">
-      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12" remarks="RW1haWw="/>
       <column name="emailConfirmed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
@@ -64,8 +140,26 @@
       <column name="loginTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="lastLoginTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_Collection_userId" table="Collection" schema="" catalog="PicShare" columns="userId"/>
+      <exported-key name="FK_Comment_userId" table="Comment" schema="" catalog="PicShare" columns="userId"/>
+      <exported-key name="FK_Dynamic_receiverId" table="Dynamic" schema="" catalog="PicShare" columns="receiverId"/>
+      <exported-key name="FK_Dynamic_senderId" table="Dynamic" schema="" catalog="PicShare" columns="senderId"/>
+      <exported-key name="FK_Fan_FollowUser_fanId" table="Fan_FollowUser" schema="" catalog="PicShare" columns="fanId"/>
+      <exported-key name="FK_Fan_FollowUser_followUserId" table="Fan_FollowUser" schema="" catalog="PicShare" columns="followUserId"/>
+      <exported-key name="FK_Image_uploaderId" table="Image" schema="" catalog="PicShare" columns="uploaderId"/>
+      <exported-key name="FK_Login_userId" table="Login" schema="" catalog="PicShare" columns="userId"/>
+      <exported-key name="FK_Rate_UserId" table="Rate" schema="" catalog="PicShare" columns="userId"/>
+      <exported-key name="FK_User_Role_userId" table="User_Role" schema="" catalog="PicShare" columns="userId"/>
       <index name="Id_UNIQUE" unique="true" columns="id"/>
       <index name="Name_UNIQUE" unique="true" columns="name"/>
+    </table>
+    <table name="User_Role" schema="" catalog="PicShare" type="TABLE">
+      <column name="userId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="roleId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="userId,roleId"/>
+      <foreign-key name="FK_User_Role_roleId" columns="roleId" ref-table="Role" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_User_Role_userId" columns="userId" ref-table="User" ref-schema="" ref-catalog="PicShare" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Role_Table_roleId_idx" unique="false" columns="roleId"/>
     </table>
   </data-source>
 </component>

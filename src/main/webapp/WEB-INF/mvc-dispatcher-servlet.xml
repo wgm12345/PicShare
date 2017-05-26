@@ -9,12 +9,22 @@
        <context:component-scan base-package="com.picshare.controller"/>
 
        <!-- 静态资源(js、image等)的访问 -->
-       <!--是对静态资源的映射，经过这个映射之后，要访问/static/fowafolo.png时，实际访问的就是/resources/fowafolo.png-->
-       <mvc:resources mapping="/static/**" location="/"/>
+       <!--是对静态资源的映射，经过这个映射之后，要访问/statics/fowafolo.png时，实际访问的就是/resources/fowafolo.png-->
+       <mvc:resources mapping="/statics/**" location="/statics/"/>
        <mvc:default-servlet-handler/>
 
        <!-- 开启注解 -->
        <mvc:annotation-driven/>
+
+       <!--json ref-->
+       <bean id="mappingJacksonHttpMessageConverter"
+             class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+              <property name="supportedMediaTypes">
+                     <list>
+                            <value>application/json;charset=UTF-8</value>
+                     </list>
+              </property>
+       </bean>
 
        <!--ViewResolver 视图解析器-->
        <!--用于支持Servlet、JSP视图解析-->
@@ -29,5 +39,63 @@
               <property name="defaultEncoding" value="UTF-8"/>
               <property name="maxUploadSize" value="2000000"/>
        </bean>
+
+       <!--&lt;!&ndash;1、检查扩展名（如my.pdf）；2、检查Parameter（如my?format=pdf）；3、检查Accept Header&ndash;&gt;-->
+       <!--<bean id= "contentNegotiationManager" class= "org.springframework.web.accept.ContentNegotiationManagerFactoryBean">-->
+              <!--&lt;!&ndash; 扩展名至mimeType的映射,即 /user.json => application/json &ndash;&gt;-->
+              <!--<property name= "favorPathExtension" value= "true" />-->
+              <!--&lt;!&ndash; 用于开启 /userinfo/123?format=json 的支持 &ndash;&gt;-->
+              <!--<property name= "favorParameter" value= "true" />-->
+              <!--<property name= "parameterName" value= "format"/>-->
+              <!--&lt;!&ndash; 是否忽略Accept Header &ndash;&gt;-->
+              <!--<property name= "ignoreAcceptHeader" value= "false"/>-->
+              <!--<property name= "mediaTypes"> &lt;!&ndash;扩展名到MIME的映射；favorPathExtension, favorParameter是true时起作用  &ndash;&gt;-->
+                     <!--<value>-->
+                            <!--ccjson=application/json-->
+                            <!--ccxml=application/xml-->
+                            <!--html=text/html-->
+                     <!--</value>-->
+              <!--</property>-->
+              <!--&lt;!&ndash; 默认的content type &ndash;&gt;-->
+              <!--<property name= "defaultContentType" value= "text/html" />-->
+       <!--</bean>-->
+
+       <!--&lt;!&ndash; ========================= VIEW定义 ========================= &ndash;&gt;-->
+       <!--&lt;!&ndash; 内容协商视图解析器；根据客户端不同的请求决定不同的view进行响应 &ndash;&gt;-->
+       <!--&lt;!&ndash; 会自动根据解析的contentType来决定使用哪个视图解析器（默认使用整个web应用中的viewResolver） &ndash;&gt;-->
+       <!--<bean class= "org.springframework.web.servlet.view.ContentNegotiatingViewResolver" p:order= "0">-->
+              <!--&lt;!&ndash; 内容协商管理器 用于决定media type &ndash;&gt;-->
+              <!--<property name= "contentNegotiationManager" ref= "contentNegotiationManager"/>-->
+              <!--&lt;!&ndash; 默认视图 放在解析链最后 &ndash;&gt;-->
+              <!--<property name= "defaultViews">-->
+                     <!--<list>-->
+                            <!--<bean class= "org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>-->
+                            <!--<bean class= "org.springframework.web.servlet.view.xml.MarshallingView">-->
+                                   <!--<property name= "marshaller">-->
+                                          <!--<bean class= "org.springframework.oxm.jaxb.Jaxb2Marshaller">-->
+                                                 <!--<property name= "packagesToScan" value= "cn.javass"></property>-->
+                                          <!--</bean>-->
+                                   <!--</property>-->
+                            <!--</bean>-->
+                     <!--</list>-->
+              <!--</property>-->
+       <!--</bean>-->
+
+       <!--&lt;!&ndash; bean name view resolver&ndash;&gt;-->
+       <!--<bean class= "org.springframework.web.servlet.view.BeanNameViewResolver" p:order= "1"/>-->
+       <!--&lt;!&ndash; 默认的视图解析器 在上边的解析错误时使用 (默认使用 html)- &ndash;&gt;-->
+       <!--<bean id= "defaultViewResolver" class= "org.springframework.web.servlet.view.InternalResourceViewResolver" p:order= "2">-->
+              <!--<property name= "viewClass" value= "org.springframework.web.servlet.view.JstlView"/>-->
+              <!--<property name= "contentType" value= "text/html"/>-->
+              <!--<property name= "prefix" value= "/WEB-INF/jsp/"/>-->
+              <!--<property name= "suffix" value= ".jsp"/>-->
+       <!--</bean>-->
+       <!--n在mvc:annotation-driven里面配置使用内容协商-->
+       <!--<mvc:annotation-driven-->
+               <!--validator= "validator"-->
+               <!--conversion-service= "conversionService"-->
+               <!--content-negotiation-manager= "contentNegotiationManager"-->
+               <!-->-->
+       <!--</mvc:annotation-driven>-->
 
 </beans>
